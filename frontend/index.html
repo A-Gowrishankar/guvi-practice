@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GUVI College Portal - Excellence in Education</title>
+
+<style>
+/* ================= RESET & VARIABLES ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+  --primary: #ffcc00;
+  --secondary: #5b2cff;
+  --dark: #0f0c29;
+  --gradient-1: #0f0c29;
+  --gradient-2: #302b63;
+  --gradient-3: #24243e;
+  --text-light: #ffffff;
+  --text-dark: #000000;
+}
+
+/* ================= BODY ================= */
+body {
+  background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
+  background-attachment: fixed;
+  color: var(--text-light);
+  overflow-x: hidden;
+}
+
+/* ================= HEADER ================= */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  animation: slideDown 0.5s ease;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo img {
+  width: 50px;
+  height: 50px;
+  filter: drop-shadow(0 0 10px rgba(255, 204, 0, 0.3));
+  transition: transform 0.3s ease;
+}
+
+.logo:hover img {
+  transform: rotate(360deg);
+}
+
+.logo h1 {
+  font-size: 24px;
+  color: var(--primary);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* ================= NAVIGATION ================= */
+nav {
+  display: flex;
+  gap: 30px;
+}
+
+nav a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+  padding: 8px 0;
+  transition: color 0.3s ease;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--primary);
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background: var(--primary);
+  border-radius: 3px;
+  transition: 0.3s;
+}
+
+/* ================= HERO SECTION ================= */
+.hero {
+  height: 550px;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(50%);
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(15, 12, 41, 0.3), rgba(15, 12, 41, 0.7));
+}
+
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+  animation: fadeInUp 1s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -40%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.hero-text h2 {
+  font-size: 52px;
+  color: var(--primary);
+  font-weight: 800;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.8);
+  line-height: 1.2;
+}
+
+.hero-text p {
+  font-size: 22px;
+  margin-top: 15px;
+  color: var(--text-light);
+  text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.8);
+}
+
+.cta-buttons {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.btn {
+  padding: 14px 35px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--text-dark);
+}
+
+.btn-primary:hover {
+  background: #ffdd33;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(255, 204, 0, 0.5);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-light);
+  border: 2px solid var(--text-light);
+}
+
+.btn-secondary:hover {
+  background: var(--text-light);
+  color: var(--text-dark);
+  transform: translateY(-3px);
+}
+
+/* ================= SLIDE INDICATORS ================= */
+.slide-indicators {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 10;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator.active {
+  background: var(--primary);
+  width: 30px;
+  border-radius: 6px;
+}
+
+/* ================= NOTICE BAR ================= */
+.notice {
+  background: linear-gradient(90deg, var(--primary), #ffaa00);
+  color: var(--text-dark);
+  text-align: center;
+  padding: 15px;
+  font-weight: 700;
+  font-size: 16px;
+  animation: slideInRight 0.8s ease;
+  box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3);
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* ================= SECTIONS ================= */
+.container {
+  padding: 60px 80px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 38px;
+  margin-bottom: 15px;
+  color: var(--primary);
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: var(--secondary);
+  border-radius: 2px;
+}
+
+.section-subtitle {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 40px;
+  max-width: 700px;
+}
+
+/* ================= STATS SECTION ================= */
+.stats {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 50px 80px;
+  backdrop-filter: blur(10px);
+  margin: 40px 0;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  text-align: center;
+}
+
+.stat-item {
+  animation: fadeIn 1s ease;
+}
+
+.stat-number {
+  font-size: 48px;
+  color: var(--primary);
+  font-weight: 800;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.stat-label {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= CARDS ================= */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0;
+  border-radius: 16px;
+  transition: all 0.4s ease;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+.card:hover {
+  transform: translateY(-12px);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 15px 40px rgba(91, 44, 255, 0.3);
+}
+
+.card-image {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover img {
+  transform: scale(1.1);
+}
+
+.card-content {
+  padding: 25px;
+}
+
+.card h3 {
+  color: var(--primary);
+  font-size: 22px;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.card p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.card-badge {
+  display: inline-block;
+  background: var(--secondary);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 15px;
+}
+
+/* ================= FEATURES SECTION ================= */
+.features {
+  background: rgba(91, 44, 255, 0.1);
+  padding: 60px 80px;
+  margin: 40px 0;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.feature-item {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feature-item:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.feature-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.feature-item h4 {
+  color: var(--primary);
+  font-size: 20px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.feature-item p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+}
+
+/* ================= QUICK LINKS ================= */
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 30px;
+}
+
+.links a {
+  background: linear-gradient(135deg, var(--secondary), #7a4dff);
+  padding: 14px 28px;
+  border-radius: 30px;
+  text-decoration: none;
+  color: var(--text-light);
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(91, 44, 255, 0.3);
+}
+
+.links a:hover {
+  background: linear-gradient(135deg, var(--primary), #ffdd33);
+  color: var(--text-dark);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 25px rgba(255, 204, 0, 0.5);
+}
+
+/* ================= TESTIMONIALS ================= */
+.testimonials {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 60px 80px;
+  margin: 40px 0;
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.testimonial {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 30px;
+  border-radius: 12px;
+  border-left: 4px solid var(--primary);
+  transition: all 0.3s ease;
+}
+
+.testimonial:hover {
+  transform: translateX(10px);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.testimonial-text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.author-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+}
+
+.author-info h5 {
+  color: var(--primary);
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.author-info p {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ================= FOOTER ================= */
+footer {
+  background: #000000;
+  padding: 50px 80px 30px;
+  margin-top: 60px;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-section h3 {
+  color: var(--primary);
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.footer-section p,
+.footer-section a {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  line-height: 2;
+  text-decoration: none;
+  display: block;
+}
+
+.footer-section a:hover {
+  color: var(--primary);
+  padding-left: 5px;
+  transition: all 0.3s ease;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.social-links a {
+  width: 40px;
+  height: 40px;
+  background: var(--secondary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  background: var(--primary);
+  color: var(--text-dark);
+  transform: translateY(-5px);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 30px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+}
+
+/* ================= SCROLL TO TOP ================= */
+.scroll-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: var(--primary);
+  color: var(--text-dark);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 204, 0, 0.4);
+  z-index: 1000;
+}
+
+.scroll-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.scroll-top:hover {
+  background: var(--secondary);
+  color: white;
+  transform: translateY(-5px);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1024px) {
+  .container,
+  .stats,
+  .features,
+  .testimonials,
+  footer {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 15px 30px;
+  }
+
+  nav {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.95);
+    flex-direction: column;
+    padding: 20px;
+    gap: 15px;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  nav.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .hero {
+    height: 400px;
+  }
+
+  .hero-text h2 {
+    font-size: 36px;
+  }
+
+  .hero-text p {
+    font-size: 16px;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container,
+  .stats,
+  .features,
+  .testimonials,
+  footer {
+    padding: 40px 20px;
+  }
+
+  .section-title {
+    font-size: 28px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo h1 {
+    font-size: 16px;
+  }
+
+  .hero-text h2 {
+    font-size: 28px;
+  }
+
+  .stat-number {
+    font-size: 36px;
+  }
+
+  .btn {
+    padding: 12px 25px;
+    font-size: 14px;
+  }
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.card-badge {
+  animation: pulse 2s infinite;
+}
+
+/* ================= LOADING ANIMATION ================= */
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+}
+
+.loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 5px solid rgba(255, 204, 0, 0.3);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <div class="spinner"></div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <img src="https://www.guvi.in/build/images/guvi-logo.svg" alt="GUVI Logo">
+    <h1>GUVI Institute of Technology</h1>
+  </div>
+  <nav id="nav">
+    <a href="#home">Home</a>
+    <a href="#programs">Programs</a>
+    <a href="#features">Features</a>
+    <a href="#placements">Placements</a>
+    <a href="#admissions">Admissions</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="menu-toggle" id="menuToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</header>
+
+<!-- HERO SECTION -->
+<div class="hero" id="home">
+  <div class="slide active">
+    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1600&h=900&fit=crop" alt="Campus">
+  </div>
+  <div class="slide">
+    <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=1600&h=900&fit=crop" alt="Students">
+  </div>
+  <div class="slide">
+    <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1600&h=900&fit=crop" alt="Learning">
+  </div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-text">
+    <h2>Learn. Build. Get Placed.</h2>
+    <p>Industry-Ready Education Powered by GUVI</p>
+    <div class="cta-buttons">
+      <a href="#admissions" class="btn btn-primary">Apply Now</a>
+      <a href="#programs" class="btn btn-secondary">Explore Programs</a>
+    </div>
+  </div>
+
+  <div class="slide-indicators">
+    <span class="indicator active" data-slide="0"></span>
+    <span class="indicator" data-slide="1"></span>
+    <span class="indicator" data-slide="2"></span>
+  </div>
+</div>
+
+<!-- NOTICE BAR -->
+<div class="notice">
+  🚀 Admissions Open 2026 | Learn with Industry Experts | Placement Support Available
+</div>
+
+<!-- STATS SECTION -->
+<div class="stats">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <span class="stat-number" data-target="5000">0</span>
+      <span class="stat-label">Students Placed</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number" data-target="500">0</span>
+      <span class="stat-label">Partner Companies</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number" data-target="95">0</span>
+      <span class="stat-label">% Placement Rate</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number" data-target="15">0</span>
+      <span class="stat-label">LPA Average Package</span>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT SECTION -->
+<div class="container">
+  <h2 class="section-title">About GUVI Institute</h2>
+  <p class="section-subtitle">
+    GUVI Institute of Technology delivers industry-aligned education using
+    real-world projects, coding platforms, and placement-focused learning.
+    Our curriculum is designed by industry experts to ensure students are
+    job-ready from day one.
+  </p>
+</div>
+
+<!-- PROGRAMS SECTION -->
+<div class="container" id="programs">
+  <h2 class="section-title">Popular Programs</h2>
+  <p class="section-subtitle">Choose from our range of industry-aligned programs</p>
+  <div class="cards">
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=400&fit=crop" alt="Computer Science">
+      </div>
+      <div class="card-content">
+        <h3>Computer Science & Engineering</h3>
+        <p>Master AI, ML, Full Stack Development, Cloud Computing & DevOps with hands-on projects and industry mentorship.</p>
+        <span class="card-badge">4 Year Program</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1581091870627-3b8c1f07c1a3?w=600&h=400&fit=crop" alt="Electronics">
+      </div>
+      <div class="card-content">
+        <h3>Electronics & Communication</h3>
+        <p>Dive into IoT, Embedded Systems, Robotics, and VLSI design with state-of-the-art laboratory facilities.</p>
+        <span class="card-badge">4 Year Program</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1605902711622-cfb43c44367f?w=600&h=400&fit=crop" alt="Mechanical">
+      </div>
+      <div class="card-content">
+        <h3>Mechanical Engineering</h3>
+        <p>Learn Design, Manufacturing, Automation and Industry 4.0 technologies with practical industrial exposure.</p>
+        <span class="card-badge">4 Year Program</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES SECTION -->
+<div class="features" id="features">
+  <div class="container">
+    <h2 class="section-title">Why Choose GUVI Institute?</h2>
+    <div class="features-grid">
+      <div class="feature-item">
+        <span class="feature-icon">💼</span>
+        <h4>100% Placement Support</h4>
+        <p>Dedicated placement cell with tie-ups with 500+ companies</p>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">👨‍💼</span>
+        <h4>Industry Experts</h4>
+        <p>Learn from professionals with 10+ years of experience</p>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">🚀</span>
+        <h4>Hands-on Projects</h4>
+        <p>Work on real-world projects from day one</p>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">🏆</span>
+        <h4>IIT-M Incubated</h4>
+        <p>Backed by IIT Madras excellence and innovation</p>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">🌐</span>
+        <h4>GUVI Platform Access</h4>
+        <p>24/7 access to coding platform with 1000+ courses</p>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">📚</span>
+        <h4>Modern Infrastructure</h4>
+        <p>State-of-the-art labs, libraries, and learning spaces</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS SECTION -->
+<div class="testimonials">
+  <div class="container">
+    <h2 class="section-title">Student Success Stories</h2>
+    <div class="testimonial-grid">
+      <div class="testimonial">
+        <p class="testimonial-text">
+          "GUVI Institute transformed my career. The practical approach and industry connections helped me land my dream job at Google within 6 months of graduation."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">AR</div>
+          <div class="author-info">
+            <h5>Arun Raj</h5>
+            <p>Software Engineer, Google</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <p class="testimonial-text">
+          "The hands-on projects and mentorship from industry experts gave me real-world experience. I'm now working on cutting-edge AI projects at Microsoft."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">PK</div>
+          <div class="author-info">
+            <h5>Priya Krishnan</h5>
+            <p>AI Engineer, Microsoft</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <p class="testimonial-text">
+          "GUVI's placement support is exceptional. From resume building to interview prep, they guided me every step. Landed at Amazon with 18 LPA package!"
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">VS</div>
+          <div class="author-info">
+            <h5>Vikram Singh</h5>
+            <p>SDE-1, Amazon</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QUICK LINKS SECTION -->
+<div class="container">
+  <h2 class="section-title">Quick Access</h2>
+  <div class="links">
+    <a href="#portal">Student Portal</a>
+    <a href="#lms">GUVI LMS</a>
+    <a href="#placements" id="placements">Placements</a>
+    <a href="#internships">Internships</a>
+    <a href="#library">Library</a>
+    <a href="#hostel">Hostel</a>
+    <a href="#sports">Sports</a>
+    <a href="#events">Events</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>GUVI Institute of Technology</h3>
+      <p>IIT Madras Research Park,</p>
+      <p>Taramani, Chennai - 600113</p>
+      <p>Tamil Nadu, India</p>
+      <p>Phone: +91 44 1234 5678</p>
+      <p>Email: admissions@guvitech.edu</p>
+    </div>
+
+    <div class="footer-section">
+      <h3>Quick Links</h3>
+      <a href="#about">About Us</a>
+      <a href="#admissions" id="admissions">Admissions</a>
+      <a href="#programs">Academic Programs</a>
+      <a href="#research">Research</a>
+      <a href="#alumni">Alumni</a>
+      <a href="#careers">Careers</a>
+    </div>
+
+    <div class="footer-section">
+      <h3>Resources</h3>
+      <a href="#portal">Student Portal</a>
+      <a href="#lms">Learning Management System</a>
+      <a href="#library">Digital Library</a>
+      <a href="#calendar">Academic Calendar</a>
+      <a href="#downloads">Downloads</a>
+      <a href="#faqs">FAQs</a>
+    </div>
+
+    <div class="footer-section">
+      <h3>Connect With Us</h3>
+      <div class="social-links">
+        <a href="#facebook" title="Facebook">📘</a>
+        <a href="#twitter" title="Twitter">🐦</a>
+        <a href="#linkedin" title="LinkedIn">💼</a>
+        <a href="#instagram" title="Instagram">📷</a>
+        <a href="#youtube" title="YouTube">▶️</a>
+      </div>
+      <p style="margin-top: 20px;">Subscribe to our newsletter for updates</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 GUVI Institute of Technology | All Rights Reserved</p>
+    <p>Powered by GUVI | IIT-M Incubated | AICTE Approved</p>
+  </div>
+</footer>
+
+<!-- SCROLL TO TOP BUTTON -->
+<div class="scroll-top" id="scrollTop">↑</div>
+
+<script>
+// ================= PAGE LOADER =================
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('hidden');
+  }, 1000);
+});
+
+// ================= MOBILE MENU TOGGLE =================
+const menuToggle = document.getElementById('menuToggle');
+const nav = document.getElementById('nav');
+
+menuToggle.addEventListener('click', () => {
+  nav.classList.toggle('active');
+});
+
+// Close menu when clicking on a link
+document.querySelectorAll('nav a').forEach(link => {
+  link.addEventListener('click', () => {
+    nav.classList.remove('active');
+  });
+});
+
+// ================= HERO SLIDER =================
+let slides = document.querySelectorAll(".slide");
+let indicators = document.querySelectorAll(".indicator");
+let currentSlide = 0;
+
+function showSlide(n) {
+  slides[currentSlide].classList.remove("active");
+  indicators[currentSlide].classList.remove("active");
+  
+  currentSlide = (n + slides.length) % slides.length;
+  
+  slides[currentSlide].classList.add("active");
+  indicators[currentSlide].classList.add("active");
+}
+
+// Auto slide
+let slideInterval = setInterval(() => {
+  showSlide(currentSlide + 1);
+}, 5000);
+
+// Manual slide control
+indicators.forEach((indicator, index) => {
+  indicator.addEventListener('click', () => {
+    clearInterval(slideInterval);
+    showSlide(index);
+    slideInterval = setInterval(() => {
+      showSlide(currentSlide + 1);
+    }, 5000);
+  });
+});
+
+// ================= ANIMATED COUNTER =================
+const counters = document.querySelectorAll('.stat-number');
+const speed = 200;
+
+const animateCounters = () => {
+  counters.forEach(counter => {
+    const target = +counter.getAttribute('data-target');
+    const increment = target / speed;
+    let current = 0;
+
+    const updateCounter = () => {
+      current += increment;
+      if (current < target) {
+        counter.textContent = Math.ceil(current);
+        setTimeout(updateCounter, 10);
+      } else {
+        counter.textContent = target;
+      }
+    };
+
+    updateCounter();
+  });
+};
+
+// Intersection Observer for counter animation
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounters();
+      statsObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+const statsSection = document.querySelector('.stats');
+if (statsSection) {
+  statsObserver.observe(statsSection);
+}
+
+// ================= SMOOTH SCROLLING =================
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+
+// ================= SCROLL TO TOP BUTTON =================
+const scrollTop = document.getElementById('scrollTop');
+
+window.addEventListener('scroll', () => {
+  if (window.pageYOffset > 300) {
+    scrollTop.classList.add('visible');
+  } else {
+    scrollTop.classList.remove('visible');
+  }
+});
+
+scrollTop.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
+
+// ================= HEADER SCROLL EFFECT =================
+let lastScroll = 0;
+const header = document.querySelector('header');
+
+window.addEventListener('scroll', () => {
+  const currentScroll = window.pageYOffset;
+  
+  if (currentScroll > lastScroll && currentScroll > 100) {
+    header.style.transform = 'translateY(-100%)';
+  } else {
+    header.style.transform = 'translateY(0)';
+  }
+  
+  lastScroll = currentScroll;
+});
+
+// ================= CARD ANIMATION ON SCROLL =================
+const cards = document.querySelectorAll('.card, .feature-item, .testimonial');
+
+const cardObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, index) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }, index * 100);
+      cardObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+cards.forEach(card => {
+  card.style.opacity = '0';
+  card.style.transform = 'translateY(30px)';
+  card.style.transition = 'all 0.5s ease';
+  cardObserver.observe(card);
+});
+
+// ================= DYNAMIC YEAR IN FOOTER =================
+const yearElement = document.querySelector('.footer-bottom p');
+if (yearElement) {
+  yearElement.innerHTML = yearElement.innerHTML.replace('2026', new Date().getFullYear());
+}
+</script>
+
+</body>
+</html>
